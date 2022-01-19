@@ -34,14 +34,14 @@ function SubirFrutas({navigation}){
   return(
     <View>
         <Text style={styles.c}>Añadir Frutas</Text>
-        <View> style={styles.c}>
+        <Text>
           <Text style={styles.c}>Nombre de la Fruta</Text>
           <ModalDropdown style={styles.mdd}  options={frutas} onSelect={(id, fruit) => setFruit(fruit)}/>
-        </View>
+        </Text>
         <Text style={styles.c}>
           <Text>Precio de la Fruta</Text>
-          <TextInput  onChangeText={price => setPrice(price)}/> 
         </Text>
+          <TextInput  onChangeText={price => setPrice(price)}/> 
         <Text style={styles.c}>
           <TouchableOpacity  onPress={onPress}>
             <Text>Añadir</Text>

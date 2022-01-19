@@ -1,55 +1,52 @@
-import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React, { useEffect, useState } from "react";
+import { Text, View, StyleSheet, FlatList } from "react-native";
 
-function FrutaScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+export default function Fruta({ route }) {
 
-      
+const styles = StyleSheet.create({
 
-    </View>
-  );
+name: {
+  fontWeight: 'bold',
+  color: 'black'
+},
+
+price: {
+  color: 'red'
 }
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
+})
+
+const [fruits, setFruits] = useState(null);
+
+  useEffect(() => {
+    fetch("http://10.0.2.2:8080/fruits")
+    .then(response => response.json())
+    .then((responseJson) => {
+      console.log('getting data from fetch', responseJson);
+      setFruits(responseJson);
+    })
+    .catch(error => console.log(error));
+  }, [])
+
+  const renderItem = ({ item }) => (
+    <Text>
+      <Text style={styles.name}>{item.name}</Text>
+      <Text> </Text>
+      <Text style={styles.price}>{item.price}</Text>
+
+    </Text>
   );
-}
 
-const Tab = createBottomTabNavigator();
+    return (
+      <View>
+        <FlatList 
+          data={fruits}
+          renderItem={renderItem}
+          keyExtractor={item=>item.id}
+        />
+      </View>
+    );
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+  }
 
-            if (route.name === 'Frutas') {
-              iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
-            } else if (route.name === 'Settings') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
-            }
 
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
-        })}
-      >
-        <Tab.Screen name="Frutas" component={FrutaScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-}

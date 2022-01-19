@@ -16,7 +16,16 @@ price: {
 
 imagen: {
   height: 80, width: 80
-}
+},
+
+centro: {
+  textAlign:'center'
+},
+
+largo: {
+  flexDirection:'row',
+  textAlign: 'center'
+} 
 
 })
 
@@ -53,14 +62,14 @@ const [fruits, setFruits] = useState(null);
 
   const renderItem = ({ item }) => (
     <View>
-      <Text>
+      <Text style={styles.centro}>
         {imagenFruta(item)}
         <Text style={styles.name}>{item.name}</Text>
         <Text> </Text>
         <Text style={styles.price}>{item.price}</Text>
       </Text>
-      <Text>
-        <Text>___________________________________</Text>
+      <Text style={styles.largo}>
+        <Text>____________________________________________________________</Text>
       </Text>
     </View>
   );

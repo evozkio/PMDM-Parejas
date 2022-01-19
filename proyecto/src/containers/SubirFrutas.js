@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
-import { Text, View,TextInput,TouchableOpacity,Alert } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
-
+import styles from '../styles/styles';
 
 
 function SubirFrutas({navigation}){
@@ -30,19 +30,23 @@ function SubirFrutas({navigation}){
       })
       .catch(error => console.log(error));
   } 
-  
- 
 
   return(
     <View>
-      <Text>Añadir Frutas</Text>
-      <Text>Nombre de la Fruta</Text>
-      <ModalDropdown options={frutas} onSelect={(id, fruit) => setFruit(fruit)}/>
-      <Text>Precio de la Fruta</Text>
-      <TextInput  onChangeText={price => setPrice(price)} /> 
-      <TouchableOpacity  onPress={onPress}>
-        <Text >Añadir</Text>
-      </TouchableOpacity>
+        <Text style={styles.c}>Añadir Frutas</Text>
+        <View> style={styles.c}>
+          <Text style={styles.c}>Nombre de la Fruta</Text>
+          <ModalDropdown style={styles.mdd}  options={frutas} onSelect={(id, fruit) => setFruit(fruit)}/>
+        </View>
+        <Text style={styles.c}>
+          <Text>Precio de la Fruta</Text>
+          <TextInput  onChangeText={price => setPrice(price)}/> 
+        </Text>
+        <Text style={styles.c}>
+          <TouchableOpacity  onPress={onPress}>
+            <Text>Añadir</Text>
+          </TouchableOpacity>
+        </Text>
     </View>
   );
 }

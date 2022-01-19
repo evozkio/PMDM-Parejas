@@ -49,15 +49,35 @@ function FrutasMostrar({ navigation }) {
           }
         
         const [fruits, setFruits] = useState(null);
+        const [refrehing, setRefreshing] = useState(false);
+        const [loading, setLoading] = useState(true);
+
+        const wait = (timeout) => {
+          return new Promise(resolve => {
+            setTimeout(resolve, timeout);
+          })
+        }
+
+        const onRefresh = React.useCallback (()=>{
+          setRefreshing(true);
+          wait(2000).then(()=> setRefreshing(false), getFruits())
+        },[]);
+
+        function getFruits(){
+          fetch("http://10.0.2.2:8080/fruits")
+        .then(response => response.json())
+        .then((responseJson) => {
+            console.log('getting data from fetch', responseJson);
+            setFruits(responseJson);
+            setLoading(false);
+        })
+          .catch(error => console.log(error));
+
+        }
+
         
           useEffect(() => {
-            fetch("http://10.0.2.2:8080/fruits")
-            .then(response => response.json())
-            .then((responseJson) => {
-              console.log('getting data from fetch', responseJson);
-              setFruits(responseJson);
-            })
-            .catch(error => console.log(error));
+            getFruits();
           }, [])
         
           const renderItem = ({ item }) => (
@@ -80,6 +100,8 @@ function FrutasMostrar({ navigation }) {
                   data={fruits}
                   renderItem={(renderItem)}
                   keyExtractor={item=>item.id}
+                  refreshing={}
+                  onRefresh={}
                 />
               </View>
             );

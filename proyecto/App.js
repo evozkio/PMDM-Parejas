@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 
 export default function Fruta({ route }) {
 
@@ -12,9 +12,32 @@ name: {
 
 price: {
   color: 'red'
+},
+
+imagen: {
+  height: 80, width: 80
 }
 
 })
+
+function imagenFruta(item) {
+  if('Piña'===item.name)
+    return <Image style={styles.imagen} source={require('./src/assets/Piña.png')}/>
+  else if ('Manzana'===item.name)
+    return <Image style={styles.imagen} source={require('./src/assets/Manzana.png')}/>
+  else if ('Melocotón'===item.name)
+    return <Image style={styles.imagen} source={require('./src/assets/Melocoton.jpg')}/>
+  else if ('Uvas'===item.name)
+    return <Image style={styles.imagen} source={require('./src/assets/Uvas.png')}/>
+  else if ('Naranja'===item.name)
+    return <Image style={styles.imagen} source={require('./src/assets/Naranja.jpg')}/>
+  else if ('Kiwi'===item.name)
+    return <Image style={styles.imagen} source={require('./src/assets/Kiwi.jpg')}/>
+  else if ('Plátano'===item.name)
+    return <Image style={styles.imagen} source={require('./src/assets/Platano.jpg')}/>
+  else if ('Pera'===item.name)
+    return <Image style={styles.imagen} source={require('./src/assets/Pera.jpg')}/>
+  }
 
 const [fruits, setFruits] = useState(null);
 
@@ -29,19 +52,24 @@ const [fruits, setFruits] = useState(null);
   }, [])
 
   const renderItem = ({ item }) => (
-    <Text>
-      <Text style={styles.name}>{item.name}</Text>
-      <Text> </Text>
-      <Text style={styles.price}>{item.price}</Text>
-
-    </Text>
+    <View>
+      <Text>
+        {imagenFruta(item)}
+        <Text style={styles.name}>{item.name}</Text>
+        <Text> </Text>
+        <Text style={styles.price}>{item.price}</Text>
+      </Text>
+      <Text>
+        <Text>___________________________________</Text>
+      </Text>
+    </View>
   );
 
     return (
       <View>
         <FlatList 
           data={fruits}
-          renderItem={renderItem}
+          renderItem={(renderItem)}
           keyExtractor={item=>item.id}
         />
       </View>

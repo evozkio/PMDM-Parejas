@@ -1,33 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, FlatList, Image, RefreshControl } from "react-native";
+import styles from '../styles/styles';
 
-function FrutasMostrar({ navigation }) {
-
-    const styles = StyleSheet.create({
-
-        name: {
-          fontWeight: 'bold',
-          color: 'black'
-        },
-        
-        price: {
-          color: 'red'
-        },
-        
-        imagen: {
-          height: 80, width: 80
-        },
-        
-        centro: {
-          textAlign:'center'
-        },
-        
-        largo: {
-          flexDirection:'row',
-          textAlign: 'center'
-        } 
-        
-    })
+function FrutasMostrar() {
         
         function imagenFruta(item) {
           if('Piña'===item.name)
@@ -58,40 +33,42 @@ function FrutasMostrar({ navigation }) {
           })
         }
 
-        const onRefresh = React.useCallback (()=>{
+        const onRefresh = React.useCallback(() => {
           setRefreshing(true);
-          wait(2000).then(()=> setRefreshing(false), getFruits())
-        },[]);
-
-        function getFruits(){
+          wait(2000).then(() => setRefreshing(false), getFruits());
+        }, []);
+      
+        function getFruits() {
           fetch("http://10.0.2.2:8080/fruits")
-        .then(response => response.json())
-        .then((responseJson) => {
-            setFruits(responseJson);
-            setLoading(false);
-        })
-          .catch(error => console.log(error));
+            .then(response => response.json())
+            .then((responseJson) => {
+              console.log('getting data from fectch', responseJson);
+              setFruits(responseJson);
+              setLoading(false);
+            })
+            .catch(error => console.log(error))
         }
-
-        
-          useEffect(() => {
-            getFruits();
-          }, [])
+      
+        useEffect(() => {
+          getFruits();
+        }, [])
         
           const renderItem = ({ item }) => (
-            <View>
-              <Text style={styles.centro}>
+            <View style={styles.centro}>
+              <View style={styles.columnas}>
                 {imagenFruta(item)}
-                <Text style={styles.name}>{item.name}</Text>
-                <Text> </Text>
-                <Text style={styles.price}>{item.price}</Text>
-              </Text>
-              <Text style={styles.largo}>
-                <Text>____________________________________________________________</Text>
-              </Text>
+              </View>
+                <View style={styles.columnas}>
+                  <Text style={styles.name}>{item.name}</Text>
+                  <Text style={styles.price}>{item.price}€</Text>
+                </View>                
             </View>
           );
         
+          if(loading){
+            return (<Text>Cargando...</Text>)
+          }
+          else{
             return (
               <View>
                 <FlatList 
@@ -107,6 +84,7 @@ function FrutasMostrar({ navigation }) {
                 />
               </View>
             );
+          }
 
 }
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, FlatList, Image } from "react-native";
+import { Text, View, StyleSheet, FlatList, Image, RefreshControl } from "react-native";
 
 function FrutasMostrar({ navigation }) {
 
@@ -67,12 +67,10 @@ function FrutasMostrar({ navigation }) {
           fetch("http://10.0.2.2:8080/fruits")
         .then(response => response.json())
         .then((responseJson) => {
-            console.log('getting data from fetch', responseJson);
             setFruits(responseJson);
             setLoading(false);
         })
           .catch(error => console.log(error));
-
         }
 
         
@@ -97,11 +95,15 @@ function FrutasMostrar({ navigation }) {
             return (
               <View>
                 <FlatList 
-                  data={fruits}
-                  renderItem={(renderItem)}
-                  keyExtractor={item=>item.id}
-                  refreshing={}
-                  onRefresh={}
+                    data={fruits}
+                    renderItem={(renderItem)}
+                    keyExtractor={item=>item.id}
+                    refreshControl={
+                        <RefreshControl
+                        refreshing={refrehing}
+                        onRefresh={onRefresh}
+                        />
+                    }
                 />
               </View>
             );

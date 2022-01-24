@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from 'react';
-import { Text, View, TextInput, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
+import React, {useState} from 'react';
+import { Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import styles from '../styles/styles';
 
@@ -11,12 +11,14 @@ function SubirFrutas({navigation}){
   const [price, setPrice] = useState(null);
 
   const onPress = () => {
-    if(isNaN(price))
-      {SubirFruta}
-    else
-      {
-        Alert.alert("Fruta la fruta no se puede añadir")
-      }
+    console.log(price)
+    if(isNaN(price)){
+      console.log("estoy")
+      Alert.alert("Fruta la fruta no se puede añadir")
+    }else{
+        console.log("noestoy")
+        {SubirFruta}
+    }
   }
 
   const SubirFruta = () => {

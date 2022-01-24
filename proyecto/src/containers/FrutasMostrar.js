@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, FlatList, Image, RefreshControl } from "react-native";
+import { Text, View, FlatList, Image, RefreshControl } from "react-native";
 import styles from '../styles/styles';
 
 function FrutasMostrar() {

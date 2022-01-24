@@ -11,31 +11,33 @@ function SubirFrutas({navigation}){
   const [price, setPrice] = useState(null);
 
   const onPress = () => {
-    console.log(fruit)
-    console.log(price)
-    if(isNaN(price)){
-      console.log("estoy")
-      Alert.alert("La fruta no se puede añadir")
-    }else{
-      fetch('http://10.0.2.2:8080/fruits', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          "name": fruit,
-          "price": price
-        }),
-      })
-      .then((responseJson) => {
-        console.log('getting data from fectch', responseJson);
-        Alert.alert("Fruta añadida correctamente")
-        setFruit(null);
-        setPrice(null);
-      })
-      .catch(error => console.log(error));
-    }
+    if(isNaN(price))
+      {
+        Alert.alert("La fruta no se puede añadir precio invalido")
+      }
+    else
+      {SubirFruta}
+  }
+
+  const SubirFruta = () => {
+    fetch('http://10.0.2.2:8080/fruits', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "name": fruit,
+        "price": price
+      }),
+    })
+    .then((responseJson) => {
+      console.log('getting data from fectch', responseJson);
+      Alert.alert("Fruta añadida correctamente")
+      setFruit(null);
+      setPrice(null);
+    })
+    .catch(error => console.log(error));
   }
 
   return(

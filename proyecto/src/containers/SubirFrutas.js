@@ -2,7 +2,6 @@ import React, { useState,useEffect } from 'react';
 import { Text, View, TextInput, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import styles from '../styles/styles';
-import PropTypes from 'prop-types';
 
 
 function SubirFrutas({navigation}){

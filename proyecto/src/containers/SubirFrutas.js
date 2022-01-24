@@ -44,7 +44,7 @@ function SubirFrutas({navigation}){
         <Text style={styles.c}>
           <Text style={styles.c}>Precio de la Fruta</Text>
         </Text>
-        <TextInput style={styles.mdd2} onChangeText={price => setPrice(price)}/> 
+        <TextInput style={styles.mdd2} keyboardType = {'number-pad'} onChangeText={price => setPrice(price)}/> 
         <TouchableOpacity  style={styles.boton} onPress={onPress}>
           <Text style={styles.c3} >Añadir</Text>
         </TouchableOpacity>

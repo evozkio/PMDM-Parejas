@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { Text, View, TextInput, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import styles from '../styles/styles';
+import PropTypes from 'prop-types';
 
 
 function SubirFrutas({navigation}){
@@ -11,25 +12,34 @@ function SubirFrutas({navigation}){
   const [price, setPrice] = useState(null);
 
   const onPress = () => {
-      fetch('http://10.0.2.2:8080/fruits', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          "name": fruit,
-          "price": price
-        }),
-      })
-      .then((responseJson) => {
-        console.log('getting data from fectch', responseJson);
-        Alert.alert("Fruta añadida correctamente")
-        setFruit(null);
-        setPrice(null);
-      })
-      .catch(error => console.log(error));
-  } 
+    if(price)
+      {SubirFruta}
+    else
+      {
+        Alert.alert("Fruta la fruta no se puede añadir")
+      }
+  }
+
+  const SubirFruta = () => {
+    fetch('http://10.0.2.2:8080/fruits', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "name": fruit,
+        "price": price
+      }),
+    })
+    .then((responseJson) => {
+      console.log('getting data from fectch', responseJson);
+      Alert.alert("Fruta añadida correctamente")
+      setFruit(null);
+      setPrice(null);
+    })
+    .catch(error => console.log(error));
+  }
 
   return(
     <View>

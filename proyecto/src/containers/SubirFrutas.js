@@ -11,7 +11,7 @@ function SubirFrutas({navigation}){
   const [price, setPrice] = useState(null);
 
   const onPress = () => {
-    if(price)
+    if(isNaN(price))
       {SubirFruta}
     else
       {

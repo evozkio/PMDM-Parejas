@@ -6,7 +6,7 @@ function FrutasMostrar() {
         
         function imagenFruta(item) {
           if('Piña'===item.name)
-            return <Image style={styles.imagen} source={require('../assets/Piña.png')}/>
+            return <Image style={styles.imagen} source={require('../assets/Pina.png')}/>
           else if ('Manzana'===item.name)
             return <Image style={styles.imagen} source={require('../assets/Manzana.png')}/>
           else if ('Melocotón'===item.name)
@@ -21,6 +21,8 @@ function FrutasMostrar() {
             return <Image style={styles.imagen} source={require('../assets/Platano.jpg')}/>
           else if ('Pera'===item.name)
             return <Image style={styles.imagen} source={require('../assets/Pera.jpg')}/>
+          else
+            return <Image style={styles.imagen} source={require('../assets/nodisponible.png')}/>
           }
         
         const [fruits, setFruits] = useState(null);

@@ -21,6 +21,8 @@ function FrutasMostrar() {
             return <Image style={styles.imagen} source={require('../assets/Platano.jpg')}/>
           else if ('Pera'===item.name)
             return <Image style={styles.imagen} source={require('../assets/Pera.jpg')}/>
+          else
+            return <Image style={styles.imagen} source={require('../assets/nodisponible.png')}/>
           }
         
         const [fruits, setFruits] = useState(null);

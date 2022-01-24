@@ -2,30 +2,21 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create(
     {
-
-        centro: {
-            textAlign: 'center',
-            flexDirection: 'column',
-            color: 'black'
-        },
-        search: {
-            
-        },
-        c: {
+        titulos: {
             marginTop: 40,
             textAlign: 'center',
             fontWeight: 'bold',
             fontSize: 20,
             color: 'black',
         },
-        c2: {
+        textoCaja: {
             marginTop: 10,
             height: 40,
             fontWeight: 'bold',
             fontSize: 20,
             color: 'black',
         },
-        c3: {
+        textoBoton: {
             
             fontWeight: 'bold',
             fontSize: 20,
@@ -80,15 +71,7 @@ const styles = StyleSheet.create(
             flexDirection:'row',
             textAlign: 'center'
           } ,
-        mdd: {
-            marginTop: 40,
-            textAlign: 'center',
-            fontWeight: 'bold',
-            fontSize: 20,
-            color: 'black',
-            borderWidth: 1,
-        },
-        mdd2: {
+        cajas: {
             marginTop: 10,
             borderWidth: 1,
             marginLeft: 30,

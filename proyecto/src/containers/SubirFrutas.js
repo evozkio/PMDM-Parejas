@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from 'react';
-import { Text, View, TextInput, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
+import React, {useState} from 'react';
+import { Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import styles from '../styles/styles';
 
@@ -42,20 +42,20 @@ function SubirFrutas({navigation}){
 
   return(
     <View>
-        <Text style={styles.c}>Añadir Frutas</Text>
+        <Text style={styles.titulos}>Añadir Frutas</Text>
         
-            <Text style={styles.c}>Nombre de la Fruta</Text>
+            <Text style={styles.titulos}>Nombre de la Fruta</Text>
           
-            <ModalDropdown style={styles.mdd2} textStyle={styles.c2}  
+            <ModalDropdown style={styles.cajas} textStyle={styles.textoCaja}  
             dropdownStyle={styles.desplegable} options={frutas} 
             onSelect={(id, fruit) => setFruit(fruit)}/>
           
-        <Text style={styles.c}>
-          <Text style={styles.c}>Precio de la Fruta</Text>
+        <Text style={styles.titulos}>
+          <Text style={styles.titulos}>Precio de la Fruta</Text>
         </Text>
-        <TextInput style={styles.mdd2} keyboardType = {'number-pad'} onChangeText={price => setPrice(price)}/> 
+        <TextInput style={styles.cajas} keyboardType = {'number-pad'} onChangeText={price => setPrice(price)}/> 
         <TouchableOpacity  style={styles.boton} onPress={onPress}>
-          <Text style={styles.c3} >Añadir</Text>
+          <Text style={styles.textoBoton} >Añadir</Text>
         </TouchableOpacity>
     </View>
   );

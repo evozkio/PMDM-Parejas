@@ -18,7 +18,7 @@ function App() {
             let iconName;
             if (route.name === 'SubirFrutas') {
               iconName = focused ? 'ios-information-circlq' : 'ioq-informatioq-circle-outline';
-            } else if (route.name === 'Historia') {
+            } else if (route.name === 'FrutasMostrar') {
               iconName = focused ? 'ios-filter' : 'ios-filter-outline';
             }
             return <Ionicons name={iconName} size={size} color={color} />;
